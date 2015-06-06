@@ -1,0 +1,263 @@
+@black: #000;
+@white: #fff;
+@whiteOnColor: rgba(255, 255, 255, 0.87);
+@blackOnColor: rgba(0, 0, 0, 0.87);
+@shadow: @black;
+
+@primaryText: @blackOnColor;
+@secondaryText: rgba(0, 0, 0, 0.54);
+@featherBlack: rgba(0, 0, 0, 0.06);
+
+@background: @white;
+@bggray: rgb(222, 223, 222);
+@fat: #FFC107;
+@darkFatText: #FFB300;
+@onFat: @blackOnColor;
+@protein: #F44336;
+@darkProteinText: #E53935;
+@onProtein: @whiteOnColor;
+@carb: #4CAF50;
+@darkCarbText: #43A047;
+@onCarb: @blackOnColor;
+@primary: #3F51B5;
+@onPrimary: @whiteOnColor;
+
+* {
+  box-sizing: border-box;
+}
+
+input {
+  font-family: 'Roboto', sans-serif;
+  font-size: 100%;
+  font-weight: 300;
+}
+
+button {
+  font-family: 'Roboto', sans-serif;
+  font-size: 100%;
+  font-weight: 300;
+  cursor: pointer;
+  outline: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: @background;
+  
+  font-family: 'Roboto', sans-serif;
+  font-size: 18pt;
+}
+
+.homeView {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  .homeView-calories {
+    background: @primary;
+    color: @onPrimary;
+    text-align: center;
+    font-weight: 100;
+    padding: 0.2em;
+    font-size: 130%;
+    box-shadow: 0 0 10px @shadow;
+  }
+  
+  .homeView-dailyCalories {
+    cursor: pointer;
+  }
+}
+
+.graph {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+
+  .graph-bar {
+    position: relative;
+    flex: 1;
+  }
+  
+  .graph-barInner {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .graph-bigBarText {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    margin-bottom: 1em;
+    
+    font-weight: 400;
+    font-size: 200%;
+  }
+  
+  .graph-barText {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+    margin-bottom: 1em;
+    cursor: pointer;
+    
+    font-weight: 300;
+    font-size: 80%;
+  }
+}
+
+.proteinBar .graph-bigBarText.isUnder,
+.proteinBar .graph-barText.isUnder {
+  color: @darkProteinText;
+}
+
+.carbBar .graph-bigBarText.isUnder,
+.carbBar .graph-barText.isUnder {
+  color: @darkCarbText;
+}
+
+.fatBar .graph-bigBarText.isUnder,
+.fatBar .graph-barText.isUnder {
+  color: @darkFatText;
+}
+
+.proteinBar .graph-barInner {
+  background: @protein;
+  color: @onProtein;
+}
+
+.carbBar .graph-barInner {
+  background: @carb;
+  color: @onCarb;
+}
+
+.fatBar .graph-barInner {
+  background: @fat;
+  color: @onFat;
+}
+
+.addView {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.addControls {
+  flex: 1;
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.addControl {
+  flex: 0;
+  margin-bottom: 1em;
+}
+
+.addControl:last-child {
+  margin-bottom: 0;
+}
+
+.addControl input {
+  background: transparent;
+  border: none;
+  color: @white;
+  width: 100%;
+  text-align: center;
+  font-size: 200%;
+  outline: none;
+}
+
+.addControl.isProtein input {
+  color: @darkProteinText;
+}
+
+.addControl.isCarb input {
+  color: @darkCarbText;
+}
+
+.addControl.isFat input {
+  color: @darkFatText;
+}
+
+.viewView {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
+  padding-bottom: 80px;
+  
+  .viewView-row {
+    padding: 0.5em 0;
+    margin: 0 0.5em;
+    border-bottom: 1px solid @featherBlack;
+    font-weight: 300;
+    color: @primaryText;
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .viewView-delete {
+    float: right;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    color: @secondaryText;
+    position: relative;
+    top: 9px;
+    padding: 0;
+  }
+  
+  .viewView-time {
+    font-size: 60%;
+    font-weight: 500;
+    color: @secondaryText;
+  }
+  
+  .isProtein {
+    color: @darkProteinText;
+  }
+  
+  .isCarb {
+    color: @darkCarbText;
+  }
+  
+  .isFat {
+    color: @darkFatText;
+  }
+}
+
+.buttonBar {
+  flex: 0 80px;
+  background: @primary;
+  display: flex;
+  flex-direction: row;
+  z-index: 0;
+  box-shadow: 0 0 10px -2px @shadow;
+  
+  &.isFixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+  }
+
+  .buttonBar-button {
+    border: none;
+    flex: 1;
+    background: transparent;
+    color: @onPrimary;
+  }
+}

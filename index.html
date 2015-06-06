@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Macros</title>
+    <!-- build:css -->
+    <link rel="stylesheet" type="text/css" href="tmp/style.css"></link>
+    <!-- endbuild -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700,100' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="homeView" data-bind="visible: showHomeView, with: homeView" style="display:none">
+      <div class="homeView-calories">
+        <span data-bind="text: totalCalories">1300</span> / <span class="homeView-dailyCalories" data-bind="text: dailyCalories, click: onDailyCaloriesClick">2200</span>
+      </div>
+      <div class="graph">
+        <div class="graph-bar proteinBar">
+          <div class="graph-bigBarText isUnder" data-bind="text: bigProteinText"></div>
+          <div class="graph-barText isUnder" data-bind="text: proteinText, click: onDailyProteinClick"></div>
+          <div class="graph-barInner" data-bind="style: { height: proteinHeight }">
+            <div class="graph-bigBarText" data-bind="text: bigProteinText"></div>
+            <div class="graph-barText" data-bind="text: proteinText, click: onDailyProteinClick"></div>
+          </div>
+        </div>
+        <div class="graph-bar carbBar">
+          <div class="graph-bigBarText isUnder" data-bind="text: bigCarbText"></div>
+          <div class="graph-barText isUnder" data-bind="text: carbText, click: onDailyCarbClick"></div>
+          <div class="graph-barInner" data-bind="style: { height: carbHeight }">
+            <div class="graph-bigBarText" data-bind="text: bigCarbText"></div>
+            <div class="graph-barText" data-bind="text: carbText, click: onDailyCarbClick"></div>
+          </div>
+        </div>
+        <div class="graph-bar fatBar">
+          <div class="graph-bigBarText isUnder" data-bind="text: bigFatText"></div>
+          <div class="graph-barText isUnder" data-bind="text: fatText, click: onDailyFatClick"></div>
+          <div class="graph-barInner" data-bind="style: { height: fatHeight }">
+            <div class="graph-bigBarText" data-bind="text: bigFatText"></div>
+            <div class="graph-barText" data-bind="text: fatText, click: onDailyFatClick"></div>
+          </div>
+        </div>
+      </div>
+      <div class="buttonBar">
+        <button class="buttonBar-button" data-bind="click: onAddClick">Add</button>
+        <button class="buttonBar-button" data-bind="click: onViewClick">View Day</button>
+      </div>
+    </div>
+    <div class="addView" data-bind="visible: showAddView, with: addView" style="display:none">
+      <div class="addControls">
+        <div class="addControl isProtein">
+          <input type="number" data-bind="value: proteinValue, event: { focus: onProteinFocus, blur: onProteinBlur }" value="0"></input>
+        </div>
+        <div class="addControl isCarb">
+          <input type="number" data-bind="value: carbValue, event: { focus: onCarbFocus, blur: onCarbBlur }" value="0"></input>
+        </div>
+        <div class="addControl isFat">
+          <input type="number" data-bind="value: fatValue, event: { focus: onFatFocus, blur: onFatBlur }" value="0"></input>
+        </div>
+      </div>
+      <div class="buttonBar">
+        <button class="buttonBar-button" data-bind="click: onAddCancelClick">Cancel</button>
+        <button class="buttonBar-button" data-bind="click: onAddAddClick">Add</button>
+      </div>
+    </div>
+    <div class="viewView" data-bind="visible: showViewView, with: viewView" style="display:none">
+      <div data-bind="foreach: entries">
+        <div class="viewView-row">
+          <button class="viewView-delete" data-bind="click: $parent.onDeleteClick">&#x2715;</button>
+          <div class="viewView-values">
+            <span class="isProtein" data-bind="text: protein">40</span> / <span class="isCarb" data-bind="text: carb">30</span> / <span class="isFat" data-bind="text: fat">20</span>
+          </div>
+          <div class="viewView-time" data-bind="text: time">3:24 p.m.</div>
+        </div>
+      </div>
+      <div class="buttonBar isFixed">
+        <button class="buttonBar-button" data-bind="click: onBackClick">Back</button>
+      </div>
+    </div>
+    
+    <script type="text/javascript" src="main.js"></script>
+  </body>
+</html>
