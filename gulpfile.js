@@ -75,7 +75,7 @@ gulp.task('build:html', ['build:revision'], function() {
       css: 'style.css'
     }))
     .pipe($.revReplace({ manifest: manifest }))
-    //.pipe($.minifyHtml())
+    .pipe($.minifyHtml())
     .pipe(gulp.dest('build'));
 });
 
