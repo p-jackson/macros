@@ -222,7 +222,8 @@
   }
   
   document.body.addEventListener('touchmove', function(e) {
-    e.preventDefault();
+    if (!ko.unwrap(mainViewModel.showViewView))
+      e.preventDefault();
   });
   
   mainViewModel.homeView.init();
