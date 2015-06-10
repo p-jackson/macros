@@ -6,15 +6,30 @@ gulp.task('clean', function(cb) {
   del(['build', 'tmp'], cb);
 });
 
-gulp.task('less', function() {
-  return gulp.src('*.less')
-    .pipe($.plumber())
-    .pipe($.less())
+function makeLessTask(generateSourceMaps) {
+  var task = gulp.src('*.less').pipe($.plumber());
+
+  if (generateSourceMaps)
+    task = task.pipe($.sourcemaps.init());
+
+  task = task.pipe($.less())
     .pipe($.autoprefixer({
       browsers: ['last 2 versions', 'Firefox ESR'],
       cascade: false
-    }))
-    .pipe(gulp.dest('tmp'));
+    }));
+
+  if (generateSourceMaps)
+    task = task.pipe($.sourcemaps.write('maps', { includeContent: false, sourceRoot: '/' }));
+
+  return task.pipe(gulp.dest('tmp'));  
+}
+
+gulp.task('less', function() {
+  return makeLessTask(false);
+});
+
+gulp.task('less:sourcemaps', function() {
+  return makeLessTask(true);
 });
 
 gulp.task('webserver', function() {
@@ -28,8 +43,8 @@ gulp.task('webserver', function() {
     }));
 });
 
-gulp.task('watch', ['less', 'webserver'], function() {
-  gulp.watch('*.less', ['less']);
+gulp.task('watch', ['less:sourcemaps', 'webserver'], function() {
+  gulp.watch('*.less', ['less:sourcemaps']);
 });
 
 gulp.task('build:less', ['less'], function() {
