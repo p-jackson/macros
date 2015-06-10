@@ -10,6 +10,10 @@ gulp.task('less', function() {
   return gulp.src('*.less')
     .pipe($.plumber())
     .pipe($.less())
+    .pipe($.autoprefixer({
+      browsers: ['last 2 versions', 'Firefox ESR'],
+      cascade: false
+    }))
     .pipe(gulp.dest('tmp'));
 });
 
