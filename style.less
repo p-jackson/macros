@@ -2,7 +2,6 @@
 @white: #fff;
 @whiteOnColor: rgba(255, 255, 255, 0.87);
 @blackOnColor: rgba(0, 0, 0, 0.87);
-@shadow: @black;
 
 @primaryText: @blackOnColor;
 @secondaryText: rgba(0, 0, 0, 0.54);
@@ -68,7 +67,7 @@ body {
     font-weight: 100;
     padding: 0.2em;
     font-size: 130%;
-    box-shadow: 0 0 10px @shadow;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
     z-index: 1;
   }
   
@@ -248,7 +247,7 @@ body {
   display: flex;
   flex-direction: row;
   z-index: 0;
-  box-shadow: 0 0 10px -2px @shadow;
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
   
   &.isFixed {
     position: fixed;
