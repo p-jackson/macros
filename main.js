@@ -221,6 +221,10 @@
     setToday(mainViewModel.viewView.entries());
   }
   
+  document.body.addEventListener('touchmove', function(e) {
+    e.preventDefault();
+  });
+  
   mainViewModel.homeView.init();
   ko.applyBindings(mainViewModel);
 })();
